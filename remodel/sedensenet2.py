@@ -28,7 +28,7 @@ def se_conv_block(x, growth_rate,k, name):
     """
     bn_axis =4
     x1 = Conv3D(growth_rate, 3, padding='same', use_bias=False,name=name + '_1_conv', kernel_initializer='he_normal')(x)
-    x1 = Activation('relu', name=name + '_0_relu', kernel_initializer='he_normal')(x1)
+    x1 = Activation('relu', name=name + '_0_relu')(x1)
     x1 = BatchNormalization(axis=bn_axis, epsilon=1.001e-5, name=name + '_1_bn')(x1)
     x1 = squeeze_excitation_layer(x1,growth_rate,4)
     x = Concatenate(axis=bn_axis, name=name + '_concat')([x, x1])
